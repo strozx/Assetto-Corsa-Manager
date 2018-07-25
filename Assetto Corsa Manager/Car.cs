@@ -11,9 +11,11 @@ namespace Assetto_Corsa_Manager
         private int rpm;
         private int gear;
         private float speed;
+        private float fuel;
         private int maxRPM;
         private int maxRPMC;
         private int shift;
+        private float bb;
         public int Rpm
         {
             get { return rpm; }
@@ -51,5 +53,12 @@ namespace Assetto_Corsa_Manager
             set { shift = value; }
         }
 
+        public float Fuel
+        {
+            get { return (float)Math.Round(Convert.ToDouble(fuel),2); }
+            set { fuel = value; }
+        }
+
+        public float BB { get { return (float)Math.Round(Convert.ToDouble(bb), 1); } set { bb = value; } }
     }
 }

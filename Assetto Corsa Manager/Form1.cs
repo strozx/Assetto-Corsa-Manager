@@ -75,19 +75,21 @@ namespace Assetto_Corsa_Manager
         private static int maxRpm;
         static void ac_StaticInfoUpdated(object sender, StaticInfoEventArgs e)
         {
-            maxRpm = (int) Math.Round(Convert.ToDouble(e.StaticInfo.MaxRpm*0.05));
+            maxRpm = (int) Math.Round(Convert.ToDouble(e.StaticInfo.MaxRpm*0.02));
             ca.MaxRPMC = maxRpm;
             ca.MaxRPM = e.StaticInfo.MaxRpm;
+            
         }
 
   
         static Car ca=new Car();
         static void ac_StaticInfoUpdated(object sender, PhysicsEventArgs e)
         {
-         
+            ca.Fuel = e.Physics.Fuel;
             ca.Rpm = e.Physics.Rpms;
             ca.Gear = e.Physics.Gear-1;
             ca.Speed = e.Physics.SpeedKmh;
+            ca.BB = e.Physics.BrakeBias*100;
             // Console.WriteLine(e.Physics.Gear);
         }
 
@@ -95,7 +97,7 @@ namespace Assetto_Corsa_Manager
         {
             if (connected)
             {
-                AC.send("RPM: " + ca.Rpm.ToString()+"$"+ca.Gear.ToString()+"$"+ca.Speed.ToString()+"km/h$"+ca.Shift+"&");
+                AC.send("RPM: " + ca.Rpm.ToString()+"$"+ca.Gear.ToString()+"$"+ca.Speed.ToString()+"km/h$"+ca.Shift+"$F:"+ca.Fuel+ "L$" + ca.BB+"&");
             }
             
 
@@ -112,9 +114,12 @@ namespace Assetto_Corsa_Manager
             {
                 ca.Shift = 10;
             }
+
+            float shiftLight = ca.MaxRPM / 16;
             crpm.Text = ca.Rpm.ToString();
             gear.Text = ca.Gear.ToString();
             speed.Text = ca.Speed.ToString();
+            fuel.Text = ca.Fuel.ToString();
             send();
         }
     }

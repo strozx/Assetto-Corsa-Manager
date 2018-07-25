@@ -42,6 +42,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.comboPorts = new System.Windows.Forms.ComboBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.fuel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -65,6 +67,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.fuel);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.speed);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.gear);
@@ -173,6 +177,26 @@
             this.timer1.Interval = 150;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(10, 134);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 20);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Fuel:";
+            // 
+            // fuel
+            // 
+            this.fuel.AutoSize = true;
+            this.fuel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.fuel.Location = new System.Drawing.Point(60, 134);
+            this.fuel.Name = "fuel";
+            this.fuel.Size = new System.Drawing.Size(27, 20);
+            this.fuel.TabIndex = 8;
+            this.fuel.Text = "20";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -206,6 +230,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox comboPorts;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label fuel;
+        private System.Windows.Forms.Label label2;
     }
 }
 
