@@ -113,9 +113,9 @@ namespace Assetto_Corsa_Manager
             else
             {
                 ca.Shift = 10;
-            }
+            } 
 
-            float shiftLight = ca.MaxRPM / 16;
+            float shiftLight = ca.MaxRPM / 17;
             crpm.Text = ca.Rpm.ToString();
             gear.Text = ca.Gear.ToString();
             speed.Text = ca.Speed.ToString();
