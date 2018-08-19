@@ -75,21 +75,55 @@ namespace Assetto_Corsa_Manager
         private static int maxRpm;
         static void ac_StaticInfoUpdated(object sender, StaticInfoEventArgs e)
         {
-            maxRpm = (int) Math.Round(Convert.ToDouble(e.StaticInfo.MaxRpm*0.02));
-            ca.MaxRPMC = maxRpm;
-            ca.MaxRPM = e.StaticInfo.MaxRpm;
+            //maxRpm = (int) Math.Round(Convert.ToDouble(e.StaticInfo.MaxRpm*0.02));
+            //ca.MaxRPMC = maxRpm;
+            //ca.MaxRPM = e.StaticInfo.MaxRpm;
+            //c
             
+            ca.MaxRPM = e.StaticInfo.MaxRpm;
+            ca.MaxRPMC = ca.MaxRPM / 8;
         }
 
   
         static Car ca=new Car();
         static void ac_StaticInfoUpdated(object sender, PhysicsEventArgs e)
         {
+            
             ca.Fuel = e.Physics.Fuel;
             ca.Rpm = e.Physics.Rpms;
             ca.Gear = e.Physics.Gear-1;
             ca.Speed = e.Physics.SpeedKmh;
             ca.BB = e.Physics.BrakeBias*100;
+            if (ca.Rpm>ca.MaxRPMC)
+            {
+                ca.ShiftRGB = 1;
+                
+            }
+            else if (ca.Rpm>ca.MaxRPMC*2)
+            {
+                ca.ShiftRGB = 2;
+            }
+            else if (ca.Rpm>ca.MaxRPMC*3)
+            {
+                ca.ShiftRGB = 3;
+            }
+            else if (ca.Rpm>ca.MaxRPMC*4)
+            {
+                ca.ShiftRGB = 4;
+            }
+            else if (ca.Rpm>ca.MaxRPMC*5)
+            {
+                ca.ShiftRGB = 5;
+            }else if (ca.Rpm>ca.MaxRPMC*6)
+            {
+                ca.ShiftRGB = 6;
+            }else if (ca.Rpm>ca.MaxRPMC*7)
+            {
+                ca.ShiftRGB = 7;
+            }else if (ca.Rpm>ca.MaxRPMC*8)
+            {
+                ca.ShiftRGB = 8;
+            }
             // Console.WriteLine(e.Physics.Gear);
         }
 
@@ -97,7 +131,7 @@ namespace Assetto_Corsa_Manager
         {
             if (connected)
             {
-                AC.send("RPM: " + ca.Rpm.ToString()+"$"+ca.Gear.ToString()+"$"+ca.Speed.ToString()+"km/h$"+ca.Shift+"$F:"+ca.Fuel+ "L$" + ca.BB+"&");
+                AC.send("RPM: " + ca.Rpm.ToString()+"$"+ca.Gear.ToString()+"$"+ca.Speed.ToString()+"km/h$"+ca.Shift+"$F:"+ca.Fuel+ "L$" + ca.BB+ca.ShiftRGB+"&");
             }
             
 
@@ -105,15 +139,15 @@ namespace Assetto_Corsa_Manager
         private bool connected = false;
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (ca.MaxRPM - ca.MaxRPMC < ca.Rpm)
-            {
-                ca.Shift = 20;
+            //if (ca.MaxRPM - ca.MaxRPMC < ca.Rpm)
+            //{
+            //    ca.Shift = 20;
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
                 ca.Shift = 10;
-            } 
+           // } 
 
             float shiftLight = ca.MaxRPM / 17;
             crpm.Text = ca.Rpm.ToString();

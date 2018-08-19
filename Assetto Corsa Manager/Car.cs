@@ -16,10 +16,15 @@ namespace Assetto_Corsa_Manager
         private int maxRPMC;
         private int shift;
         private float bb;
+        private int shiftRGB;
         public int Rpm
         {
             get { return rpm; }
             set { rpm = value; }
+        } public int ShiftRGB
+        {
+            get { return shiftRGB; }
+            set { shiftRGB = value; }
         }
 
         public int Gear
